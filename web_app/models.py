@@ -16,18 +16,24 @@ class Product(models.Model):
         WITH_UNIVERSAL_ITEM = 0
         WITH_UNIQUE_ITEMS = 1
 
-    title = models.CharField(max_length=256, null=False, blank=False)
-    description = models.CharField(max_length=1000, null=False, blank=False)
-    product_type = models.IntegerField(choices=ProductType)
-    price = models.DecimalField(max_digits=11, decimal_places=2)
-    file = models.FileField(null=True, upload_to=user_directory_path)
+    title = models.CharField(max_length=256, null=False, blank=False,
+                             verbose_name="Название")
+    description = models.CharField(max_length=1000, null=False, blank=False,
+                                   verbose_name="Описание")
+    product_type = models.IntegerField(choices=ProductType,
+                                       verbose_name="Тип товара")
+    price = models.DecimalField(max_digits=11, decimal_places=2,
+                                verbose_name="Цена")
+    photo = models.ImageField(upload_to=user_directory_path,
+                              verbose_name="Картинка")
 
 
-class Photo(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    inner_order = models.IntegerField(default=1)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    file = models.FileField(upload_to=user_directory_path)
+class Item(models.Model):
+    description = models.CharField(max_length=1000, null=False,
+                                   blank=False, verbose_name="Инструкция")
+    file = models.ImageField(null=True, blank=True,
+                             upload_to=user_directory_path,
+                             verbose_name="Файл (опционально)")
 
 
 class Review(models.Model):
@@ -35,3 +41,5 @@ class Review(models.Model):
     text = models.CharField(max_length=500, null=False, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+
