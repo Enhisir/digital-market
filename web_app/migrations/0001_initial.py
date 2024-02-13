@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('description', models.CharField(max_length=1000)),
                 ('product_type', models.IntegerField(choices=[(0, 'With Universal Item'), (1, 'With Unique Items')])),
                 ('price', models.DecimalField(decimal_places=2, max_digits=11)),
-                ('file', models.FileField(null=True, upload_to=web_app.models.user_directory_path)),
+                ('file', models.FileField(null=True, upload_to=web_app.models.custom_path)),
             ],
         ),
         migrations.CreateModel(
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('inner_order', models.IntegerField(default=1)),
-                ('file', models.FileField(upload_to=web_app.models.user_directory_path)),
+                ('file', models.FileField(upload_to=web_app.models.custom_path)),
                 ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='web_app.product')),
             ],
         ),

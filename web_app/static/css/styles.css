@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.content__centered {
+    display: grid;
+    height: 100vh;
+    place-items: center;
+}
+
+.card-img-top {
+    object-fit: cover;
+    border-radius: inherit;
+}
