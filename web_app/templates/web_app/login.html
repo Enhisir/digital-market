@@ -1,0 +1,14 @@
+{% extends "web_app/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Авторизация{% endblock title %}
+
+{% block content %}
+<div class="content__centered">
+    <div class="w-25 p-3 border border-light rounded-1">
+        <h2 class="text-center">Авторизация</h2>
+        <hr/>
+        {% crispy form %}
+    </div>
+</div>
+{% endblock content %}
